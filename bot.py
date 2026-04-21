@@ -3,8 +3,8 @@ import requests
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 
-TOKEN = os.getenv("TOKEN")
-API_KEY = os.getenv("API_KEY")
+TOKEN = "8771703967:AAEO6jLXBLFNZ9B9aFI5sivcwxe5rtcdBcs"
+API_KEY = "69e6273253bfe2f379ff8ee3"
 
 BASE_URL = "https://api.biteship.com/v1"
 
