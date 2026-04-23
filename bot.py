@@ -1,39 +1,47 @@
 from telegram import Update
 from telegram.ext import ApplicationBuilder, MessageHandler, ContextTypes, filters
 
+# GANTI DENGAN TOKEN BOT KAMU SENDIRI
 TOKEN = "8771703967:AAH9-l96ZZ7DQkuvYJwM7ZL9qplpD9j8DQs"
 
 
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
 
-resi = "-"
-isi = "-"
-total = "-"
+    # pisah per baris
+    lines = [line.strip() for line in text.split("\n") if line.strip()]
 
-for i, line in enumerate(lines):
-    line = line.strip()
+    resi = "-"
+    isi = "-"
+    total = "-"
+    nomor = "-"
 
-    # ambil resi dari teks panjang
-    if "No Resi" in line:
-        try:
-            resi = line.split(":")[1].strip()
-        except:
-            pass
+    for i, line in enumerate(lines):
 
-    # ambil isi paket
-    if "Barang" in line:
-        try:
-            isi = lines[i + 1].replace("┗", "").strip()
-        except:
-            pass
+        # ambil resi
+        if "No Resi" in line:
+            try:
+                resi = line.split(":")[1].strip()
+            except:
+                pass
 
-    # ambil total harga
-    if "Rp" in line:
-        total = line.strip()
-        
-        pesan = f"""Halo! Ini adalah kurir anda dari <b>JNT Xpress</b>! Ini ada paket.
-        
+        # ambil isi paket
+        if "Barang" in line:
+            try:
+                isi = lines[i + 1].replace("┗", "").strip()
+            except:
+                pass
+
+        # ambil harga
+        if "Rp" in line:
+            total = line.strip()
+
+        # ambil nomor HP (kalau ada)
+        if line.startswith("08"):
+            nomor = line
+
+    pesan = f"""Halo! Ini adalah kurir anda dari <b>JNT Xpress</b>! Ini ada paket.
+
  Resi: {resi}
  Isi paket: {isi}
  Nomor: {nomor}
@@ -50,12 +58,15 @@ Jika pembayaran telah dilakukan hari ini, paket akan segera diproses untuk pengi
 
 Terima kasih.
 """
-        await update.message.reply_text(pesan, parse_mode="HTML")
+
+    await update.message.reply_text(pesan, parse_mode="HTML")
 
 
 def main():
     app = ApplicationBuilder().token(TOKEN).build()
+
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
+
     print("Bot jalan...")
     app.run_polling()
 
