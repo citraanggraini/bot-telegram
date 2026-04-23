@@ -17,18 +17,25 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         nomor = lines[2] if len(lines) > 2 else "-"
         total = lines[3] if len(lines) > 3 else "-"
 
-        pesan = f"""Halo 👋
+        pesan = f"""Halo! Ini adalah kurir anda dari *JNT Xpress*! Ini ada paket.
+        
 
-Berikut informasi paket Anda:
+ Resi: {resi}
+ Isi paket: {isi}
+ Nomor: {nomor}
+ Total: {total}
 
-📦 Resi: {resi}
-📄 Isi paket: {isi}
-📱 Nomor: {nomor}
-💰 Total: {total}
+Mohon maaf sebelum nya untuk paket COD harap melakukan transfer dahulu ke
+
+*BTN*
+*Rek : 100301700002153*
+*A/n : Angga Darma Saputra*
+
+Sesuai ketentuan yang berlaku, apabila tidak bersedia melanjutkan, paket akan dikembalikan.
+Jika pembayaran telah dilakukan hari ini, paket akan segera diproses untuk pengiriman.
 
 Terima kasih.
 """
-
         await update.message.reply_text(pesan)
 
 
