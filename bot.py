@@ -1,7 +1,8 @@
 from telegram import Update
 from telegram.ext import ApplicationBuilder, MessageHandler, ContextTypes, filters
+import re
 
-# GANTI DENGAN TOKEN BOT KAMU SENDIRI
+# GANTI TOKEN KAMU
 TOKEN = "8771703967:AAH9-l96ZZ7DQkuvYJwM7ZL9qplpD9j8DQs"
 
 
@@ -14,7 +15,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     resi = "-"
     isi = "-"
     total = "-"
-    nomor = "-"
+    nomor = "-"  # sengaja dikosongkan
 
     for i, line in enumerate(lines):
 
@@ -32,20 +33,18 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
             except:
                 pass
 
-        # ambil harga
+        # ambil harga (hanya Rp saja)
         if "Rp" in line:
-            total = line.strip()
-
-        # ambil nomor HP (kalau ada)
-        if line.startswith("08"):
-            nomor = line
+            cocok = re.search(r'Rp[\d\.\,]+', line)
+            if cocok:
+                total = cocok.group()
 
     pesan = f"""Halo! Ini adalah kurir anda dari <b>JNT Xpress</b>! Ini ada paket.
 
- Resi: {resi}
- Isi paket: {isi}
- Nomor: {nomor}
- Total: {total}
+   Resi: {resi}
+   Isi paket: {isi}
+   Nomor: {nomor}
+   Total: {total}
 
 Mohon maaf sebelum nya untuk paket COD harap melakukan transfer dahulu ke
 
@@ -64,9 +63,7 @@ Terima kasih.
 
 def main():
     app = ApplicationBuilder().token(TOKEN).build()
-
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
-
     print("Bot jalan...")
     app.run_polling()
 
