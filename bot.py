@@ -61,7 +61,7 @@ Jika pembayaran telah dilakukan hari ini, paket akan segera diproses untuk pengi
 Terima kasih.
 """
     
-    await update.message.reply_text(pesan)
+    await update.message.reply_text(pesan, parse_mode="Markdown")
 
 
 def main():
