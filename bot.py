@@ -1,4 +1,4 @@
-from telegram import Update
+tufrom telegram import Update
 from telegram.ext import ApplicationBuilder, MessageHandler, ContextTypes, filters
 import re
 
@@ -39,26 +39,29 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
             if cocok:
                 total = cocok.group()
 
-    pesan = f"""Halo! Ini adalah kurir anda dari <b>JNT Xpress</b>! Ini ada paket.
+    pesan = f"""Halo! Ini adalah kurir anda dari *JNT Xpress* Ini ada paket.
 
-   Resi: {resi}
-   Isi paket: {isi}
-   Nomor: {nomor}
-   Total: {total}
+*Resi*:{resi}
+   
+*Isi paket*: {isi}
+  
+*Nomor*: {nomor}
+
+*Total*: {total}
 
 Mohon maaf sebelum nya untuk paket COD harap melakukan transfer dahulu ke
 
-<b>BTN</b>
-<b>Rek : 100301700002153</b>
-<b>A/n : Angga Darma Saputra</b>
+*BTN*
+*Rek : 100301700002153*
+*A/n : Angga Darma Saputra*
 
 Sesuai ketentuan yang berlaku, apabila tidak bersedia melanjutkan, paket akan dikembalikan.
 Jika pembayaran telah dilakukan hari ini, paket akan segera diproses untuk pengiriman.
 
 Terima kasih.
 """
-
-    await update.message.reply_text(pesan, parse_mode="HTML")
+    
+    await update.message.reply_text(pesan)
 
 
 def main():
