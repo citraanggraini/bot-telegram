@@ -27,9 +27,9 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 Mohon maaf sebelum nya untuk paket COD harap melakukan transfer dahulu ke
 
-*BTN*
-*Rek : 100301700002153*
-*A/n : Angga Darma Saputra*
+<b>BTN</b>
+<b>Rek : 100301700002153</b>
+<b>A/n : Angga Darma Saputra</b>
 
 Sesuai ketentuan yang berlaku, apabila tidak bersedia melanjutkan, paket akan dikembalikan.
 Jika pembayaran telah dilakukan hari ini, paket akan segera diproses untuk pengiriman.
