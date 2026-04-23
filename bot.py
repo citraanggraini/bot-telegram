@@ -4,38 +4,19 @@ from telegram.ext import ApplicationBuilder, MessageHandler, ContextTypes, filte
 # MASUKKAN TOKEN BOT DI SINI
 TOKEN = "8771703967:AAH9-l96ZZ7DQkuvYJwM7ZL9qplpD9j8DQs"
 
-
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
 
-    # pisah paket berdasarkan ---
     blocks = [b.strip() for b in text.split("---") if b.strip()]
 
     for block in blocks:
-        lines = block.split("\n")
+        lines = [line.strip() for line in block.split("\n") if line.strip()]
 
-        resi = "-"
-        isi = "-"
-        nomor = "-"
-        harga = "-"
-
-        for line in lines:
-            if ":" not in line:
-                continue
-
-            key, value = line.split(":", 1)
-            key = key.strip().lower()
-            value = value.strip()
-
-            if "resi" in key:
-                resi = value
-            elif "isi" in key:
-                isi = value
-            elif "nomor" in key or "hp" in key:
-                nomor = value
-            elif "harga" in key:
-                harga = value
-
+        resi = lines[0] if len(lines) > 0 else "-"
+        isi = lines[1] if len(lines) > 1 else "-"
+        nomor = lines[2] if len(lines) > 2 else "-"
+        total = lines[3] if len(lines) > 3 else "-"
+        
         pesan = f"""Halo! Ini adalah kurir anda dari *JNT Xpress*! Ini ada paket.
 
 Resi: {resi}
