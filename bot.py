@@ -12,10 +12,30 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     for block in blocks:
         lines = [line.strip() for line in block.split("\n") if line.strip()]
 
-        resi = lines[0] if len(lines) > 0 else "-"
-        isi = lines[1] if len(lines) > 1 else "-"
-        nomor = lines[2] if len(lines) > 2 else "-"
-        total = lines[3] if len(lines) > 3 else "-"
+        resi = "-"
+isi = "-"
+total = "-"
+
+for i, line in enumerate(lines):
+    line = line.strip()
+
+    # ambil resi dari teks panjang
+    if "No Resi" in line:
+        try:
+            resi = line.split(":")[1].strip()
+        except:
+            pass
+
+    # ambil isi paket
+    if "Barang" in line:
+        try:
+            isi = lines[i + 1].replace("┗", "").strip()
+        except:
+            pass
+
+    # ambil total harga
+    if "Rp" in line:
+        total = line.strip()
 
         pesan = f"""Halo! Ini adalah kurir anda dari <b>JNT Xpress</b>! Ini ada paket.
         
