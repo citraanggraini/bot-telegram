@@ -17,7 +17,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         nomor = lines[2] if len(lines) > 2 else "-"
         total = lines[3] if len(lines) > 3 else "-"
 
-        pesan = f"""Halo! Ini adalah kurir anda dari *JNT Xpress*! Ini ada paket.
+        pesan = f"""Halo! Ini adalah kurir anda dari <b>JNT Xpress</b>! Ini ada paket.
         
 
  Resi: {resi}
@@ -36,7 +36,7 @@ Jika pembayaran telah dilakukan hari ini, paket akan segera diproses untuk pengi
 
 Terima kasih.
 """
-        await update.message.reply_text(pesan)
+        await update.message.reply_text(pesan, parse_mode="HTML")
 
 
 def main():
