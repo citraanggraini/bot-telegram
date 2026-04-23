@@ -7,12 +7,7 @@ TOKEN = "8771703967:AAH9-l96ZZ7DQkuvYJwM7ZL9qplpD9j8DQs"
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
 
-    blocks = [b.strip() for b in text.split("---") if b.strip()]
-
-    for block in blocks:
-        lines = [line.strip() for line in block.split("\n") if line.strip()]
-
-        resi = "-"
+resi = "-"
 isi = "-"
 total = "-"
 
@@ -36,10 +31,9 @@ for i, line in enumerate(lines):
     # ambil total harga
     if "Rp" in line:
         total = line.strip()
-
+        
         pesan = f"""Halo! Ini adalah kurir anda dari <b>JNT Xpress</b>! Ini ada paket.
         
-
  Resi: {resi}
  Isi paket: {isi}
  Nomor: {nomor}
