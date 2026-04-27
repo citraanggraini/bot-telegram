@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pengajuan Pengembalian Dana</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #4b0082, #9b59b6);
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .box {
+      background: white;
+      color: #222;
+      max-width: 380px;
+      margin: 40px auto;
+      padding: 25px;
+      border-radius: 18px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    h1 {
+      font-size: 26px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    input {
+      width: 90%;
+      padding: 14px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      margin: 15px 0;
+    }
+
+    button {
+      width: 95%;
+      padding: 14px;
+      background: #6a0dad;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    img {
+      width: 230px;
+      margin-top: 15px;
+      border-radius: 10px;
+    }
+
+    .info {
+      background: #f4ecff;
+      padding: 12px;
+      border-radius: 10px;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Pengajuan Pengembalian Dana</h1>
+  <p>Silakan masukkan nominal pengembalian dana.</p>
+
+  <div class="box">
+    <input type="number" id="nominal" placeholder="Masukkan nominal">
+
+    <button onclick="tampilQR()">Lanjut</button>
+
+    <div id="hasil"></div>
+  </div>
+
+  <script>
+    function tampilQR() {
+      let nominal = document.getElementById("nominal").value;
+
+      if (nominal === "") {
+        alert("Masukkan nominal terlebih dahulu");
+        return;
+      }
+
+      let linkQR = "https://i.imgur.com/o0XLkuq.jpeg";
+
+      document.getElementById("hasil").innerHTML = `
+        <h3>Nominal: Rp${Number(nominal).toLocaleString("id-ID")}</h3>
+
+        <p><b>Silakan scan QR di bawah ini.</b></p>
+
+        <img src="${linkQR}" alt="QR Pengembalian Dana">
+
+        <div class="info">
+          Simpan QR ini, lalu buka aplikasi rekening bank Anda.<br>
+          Upload QR untuk melanjutkan proses pengajuan.
+        </div>
+      `;
+    }
+  </script>
+
+</body>
+</html>
